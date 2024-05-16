@@ -1,0 +1,41 @@
+.game_intro__inner img:nth-of-type(2) {
+			  position: relative;
+			  left: 0px;
+			}
+			.game_intro__inner img:nth-of-type(2) {
+			  cursor: pointer;
+			  margin-top: 40px;
+			}
+			.game_inner__tooltip {
+			  width: 390px;
+			  margin: 0 auto;
+			  text-align: left;
+			  position: absolute;
+			  top: calc(50% + 240px);
+			  left: 0;
+			  right: 0;
+			  margin: auto;
+			  opacity: 0;
+			  transition: all 0.3s;
+			}
+			.game_inner__tooltip.active {
+			  opacity: 1;
+			}
+			.game_inner__tooltip .smash {
+			  width: 100%;
+			  text-align: center;
+			  margin-top: 23px;
+			  font-size: 9px;
+			}
+			.game_inner__tooltip .space {
+			  width: 390px;
+			  margin-top: 50px;
+			  height: 50px;
+			  background: white;
+			  position: relative;
+			  top: 0;
+			  border-radius: 6px;
+			  box-shadow: 0 10px #d6d6d6;
+			  -webkit-animation: press2 0.1s infinite;
+			          animation: press2 0.1s infinite;
+			}
