@@ -1,0 +1,105 @@
+ muteAll() {
+		    Object.keys(this._globalAudio).forEach(
+		      function (key) {
+		        this._globalAudio[key].forEach(function (aud) {
+		          aud.volume = 0;
+		        });
+		      }.bind(this)
+		    );
+		  }
+		
+		  list() {
+		    Object.keys(this._globalAudio).forEach(
+		      function (key) {
+		        console.log("%c" + key, "font-weight: bold; color: green");
+		      }.bind(this)
+		    );
+		  }
+		
+		  onLoaded() {
+		    if (this.helpers) {
+		      console.log("All audio loaded");
+		      this.list();
+		    }
+		  }
+		}
+		
+		new Vue({
+		  el: "#app",
+		
+		  data() {
+		    return {
+		      keyCode: 32,
+		      minutes: 4,
+		      seconds: 0,
+		      ms: 1,
+		      pressed: false,
+		      strength: 1,
+		      intelligence: 1,
+		      luck: 1,
+		      speed: 1,
+		      gameStarted: false,
+		      muteBg: false,
+		      boss: false,
+		      damage: 1,
+		      weapon: "Blunt sword",
+		      weaponDamage: 1,
+		      enemiesPerStage: 2,
+		      canAttack: false,
+		      stage: 1,
+		      goldGained: 0,
+		      sfx: true,
+		      xpGained: 0,
+		      introClicked: false,
+		      bgMusicStarted: false,
+		      stageComplete: false,
+		      xp: 0,
+		      damageAnim: 1,
+		      shoppingPhase: false,
+		      gold: 0,
+		      gameover: false,
+		      gamewin: false,
+		      audioController: "",
+		      enemy: new Enemy(5, "HAREK SEDGWICK"),
+		      enemiesDefeated: 0,
+		      enemyKilled: false,
+		      tooltipTimer: 0,
+		      tooltip: true,
+		      enemyNames: [
+		        "JACOB DANGERS",
+		        "MILEON MASON",
+		        "MACE CAVELIER",
+		        "OSRIC GRAGOLOON",
+		        "MOSES STONEWELL",
+		        "TRISTAN GOSBECK",
+		        "REDWALD CROMWELL",
+		        "JEREMIAS PICARD",
+		        "EGRIC MAIDSTONE",
+		        "ROBIN CURTEYS",
+		        "DINUS DE REUE",
+		        "HAREK SEDGWICK",
+		        "FLORA DAUBERVILLE",
+		        "RAMETTA THE SLENDER",
+		        "ISEMAY VERNOLD",
+		        "AVINA CECIL",
+		        "FANUS THE GREAT",
+		        "GASPAR SHADOWSEEKER",
+		        "GOUBERT THE RED",
+		        "ALDOUS DARCY",
+		        "RYN THE RED",
+		        "FULLER CARDON",
+		        "ANSELM THE OLD",
+		        "ALVINA BLUETOOTH",
+		        "MICKNEY  CORVISER",
+		        "RYKOR RAVENSGATE",
+		        "REYNARD LONGBOW",
+		        "ALEX TROST",
+		        "ADAM KUHN",
+		        "STEVE GARDNER",
+		        "CHASSIE EVANS",
+		        "STEVEN SHAW",
+		        "CHRIS COYIER",
+		        "JHEY",
+		        "PETE BARR",
+		        "ZACH SAUCIER"
+		      ],
