@@ -1,0 +1,4 @@
+QObject::connect(webView, &QWebEngineView::loadProgress, [=](int currentProgress){
+    progressBar->setValue(currentProgress);
+    // 这里的progressBar是一个QProgressBar对象，用于显示加载进度
+});
