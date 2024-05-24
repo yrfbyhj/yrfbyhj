@@ -1,0 +1,14 @@
+@Test
+void testApacheCsv(){
+    // 生成默认格式化的CSV文件
+    ApacheCsvUtil.generateCsvWithConfig(HutooCsvUtil.generateUserList(), CSVFormat.DEFAULT);
+    // 解析读取默认格式化的CSV文件
+    List<User> users = ApacheCsvUtil.readCsv(CSVFormat.DEFAULT);
+    assertEquals(6, users.size());
+    System.out.println("==========================");
+    // 生成自定义格式化的CSV文件
+    ApacheCsvUtil.generateCsvWithConfig(HutooCsvUtil.generateUserList(), ApacheCsvUtil.customCsvFormat());
+    // 解析读取自定义格式化的CSV文件
+    List<User> userList = ApacheCsvUtil.readCsv(ApacheCsvUtil.readCustomCsvFormat());
+    assertEquals(6, userList.size());
+}
