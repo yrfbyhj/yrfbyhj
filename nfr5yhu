@@ -1,0 +1,23 @@
+var builder = WebApplication.CreateBuilder(args);  
+  
+// 添加CORS服务  
+builder.Services.AddCors(options =>  
+{  
+    options.AddPolicy("MyCorsPolicy", builder =>  
+    {  
+        builder.WithOrigins("http://localhost:你的前端端口号",  
+                           // ...其他源  
+                           )  
+               .AllowAnyHeader()  
+               .AllowAnyMethod();  
+    });  
+});  
+  
+var app = builder.Build();  
+  
+// 使用CORS中间件  
+app.UseCors("MyCorsPolicy");  
+  
+// 其他中间件和终端配置...  
+  
+app.Run();
