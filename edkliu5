@@ -1,0 +1,8 @@
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://api.example.com/data', true);
+xhr.withCredentials = true; // 允许携带 Cookie
+xhr.send();
+fetch('https://api.example.com/data', {
+  method: 'GET',
+  credentials: 'include', // 允许携带 Cookie
+});
