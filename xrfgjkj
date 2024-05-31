@@ -1,0 +1,36 @@
+import Counter from "./Counter";
+
+describe('测试 Counter', () => {
+
+  let counter = null
+
+  beforeAll(() => {
+    console.log('beforeAll')
+  })
+
+  beforeEach(() => {
+    console.log('beforeEach')
+    counter = new Counter();
+  })
+
+  afterEach(() => {
+    console.log('afterEach')
+    // counter = null
+  })
+
+  afterAll(() => {
+    console.log('afterAll')
+  })
+  
+  test('测试 addOne 方法', () => {
+    console.log('测试 addOne ')
+    counter.addOne()
+    expect(counter.number).toBe(1)
+  })
+  
+  test('测试 minusOne 方法', () => {
+    console.log('测试 minusOne ')
+    counter.minusOne()
+    expect(counter.number).toBe(-1)
+  })
+})
