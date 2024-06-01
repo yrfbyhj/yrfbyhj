@@ -1,0 +1,119 @@
+void NoFood(pSnakeNode pNextNode, pGSnake ps) {
+	pNextNode->next = ps->_pSnake;
+	ps->_pSnake = pNextNode;
+	pSnakeNode cur = ps->_pSnake;
+	while (cur->next->next)
+	{
+		SetPos(cur->x, cur->y);
+		wprintf(L"%lc", BODY);
+		cur = cur->next;
+ 
+	}
+	SetPos(cur->next->x, cur->next->y);
+	printf("  ");
+ 
+	free(cur->next);
+	cur->next = NULL;
+}
+ 
+void KillByWall(pGSnake ps) {
+	if (
+		(ps->_pSnake->x == 0) ||
+		(ps->_pSnake->x == 58) ||
+		(ps->_pSnake->y == 0) ||
+		(ps->_pSnake->y == 29)
+		) {
+		ps->_Status = KILL_BY_WALL;
+		return 1;
+	}
+	return 0;
+}
+void KillBySelf(pGSnake ps) {
+	pSnakeNode cur = ps->_pSnake->next;
+	while (cur) {
+		if (cur->x == ps->_pSnake->x && cur->y == ps->_pSnake->y) {
+			ps->_Status = KILL_BY_SELF;
+			break;
+		}
+		cur = cur->next;
+	}
+ 
+}
+void SnakeMove(pGSnake ps) {
+	pSnakeNode pNextNode = (pSnakeNode)malloc(sizeof(SnakeNode));
+	switch (ps->_Dir) {
+	case UP:
+		pNextNode->x = ps->_pSnake->x;
+		pNextNode->y = ps->_pSnake->y - 1;
+ 
+		break;
+	case DOWN:
+		pNextNode->x = ps->_pSnake->x;
+		pNextNode->y = ps->_pSnake->y + 1;
+		break;
+	case LEFT:
+		pNextNode->x = ps->_pSnake->x - 2;
+		pNextNode->y = ps->_pSnake->y;
+ 
+		break;
+	case RIGHT:
+		pNextNode->x = ps->_pSnake->x + 2;
+		pNextNode->y = ps->_pSnake->y;
+		break;
+	}
+	if (NextisFood(pNextNode, ps)) {
+		EatFood(pNextNode, ps);
+	}
+	else
+	{
+		NoFood(pNextNode, ps);
+	}
+	KillByWall(ps);
+	KillBySelf(ps);
+}
+void GameRun(pGSnake ps) {
+	//打印帮助信息
+	PrintHelpInfo();
+ 
+	//循环
+	do {
+		SetPos(66, 8);
+		printf("游戏得分：%4d", ps->_Score);
+		printf("食物重量：%4d", ps->_FoodWeight);
+		if (KEY_PRESS(VK_UP) && ps->_Dir != DOWN) {
+			ps->_Dir = UP;
+		}
+		else if (KEY_PRESS(VK_DOWN) && ps->_Dir != UP) {
+			ps->_Dir = DOWN;
+		}
+		else if (KEY_PRESS(VK_LEFT) && ps->_Dir != RIGHT) {
+			ps->_Dir = LEFT;
+		}
+		else if (KEY_PRESS(VK_RIGHT) && ps->_Dir != LEFT) {
+			ps->_Dir = RIGHT;
+		}
+		else if (KEY_PRESS(VK_SPACE)) {
+			pause();
+		}
+		else if (KEY_PRESS(VK_ESCAPE)) {
+			ps->_Status = END_NORMAL;
+			break;
+		}
+		else if (KEY_PRESS(VK_F3)) {
+			if (ps->_SleepTime > 80) {
+				ps->_SleepTime -= 30;
+				ps->_FoodWeight += 2;
+			}
+		}
+		else if (KEY_PRESS(VK_F4)) {
+			if (ps->_SleepTime < 320) {
+				ps->_SleepTime += 30;
+				ps->_FoodWeight -= 2;
+			}
+		}
+		Sleep(ps->_SleepTime);
+		SnakeMove(ps);
+	} while (ps->_Status == OK);
+ 
+}
+ 
