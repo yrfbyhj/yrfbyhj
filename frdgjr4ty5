@@ -1,0 +1,11 @@
+import pickle
+
+import base64
+
+import pickletools
+
+cookie="gASVLAAAAAAAAACMA2FwcJSMBUxvZ2lulJOUKYGUfZQojARuYW1llIwBMZSMA3B3ZJRoBnViLg=="
+
+data=base64.b64decode(cookie)  
+
+print(pickletools.dis(data))
