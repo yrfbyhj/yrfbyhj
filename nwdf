@@ -1,0 +1,9 @@
+# 运行容器（仅CPU）
+docker run -d \
+   --restart unless-stopped \
+   --name ollama-webui \
+   -p 11433:8080 \
+   -v $(pwd)/data:/app/backend/data \
+   -e OLLAMA_API_BASE_URL=http://192.168.0.197:11434/api \
+   -e WEBUI_SECRET_KEY=TkjGEiQ@5K^j \
+   ghcr.io/open-webui/open-webui:main
