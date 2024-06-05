@@ -1,0 +1,24 @@
+  return {
+        param,
+        ebooks,
+        pagination,
+        columns,
+        loading,
+        handleTableChange,
+        handleQuery,
+        getCategoryName,
+ 
+        edit,
+        add,
+ 
+        ebook,
+        modalVisible,
+        modalLoading,
+        handleModalOk,
+        categoryIds,
+        level1,
+ 
+        handleDelete
+      }
+    }
+  });
