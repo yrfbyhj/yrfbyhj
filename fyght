@@ -1,0 +1,6 @@
+@Configuration
+@EnableJpaRepositories
+@ConditionalOnProperty(name = "spring.datasource.url")
+public class JpaConfig {
+    // 配置 JPA 数据源、事务管理等相关信息
+}
