@@ -1,0 +1,14 @@
+ if (isCanvasSupported()) {
+    var c = document.getElementById('waterfall');
+    var cw = c.width = Math.max(document.getElementById('waterfall').scrollWidth, document.getElementById('waterfall').offsetWidth, document.getElementById('waterfall').clientWidth, document.getElementById('waterfall').scrollWidth, document.getElementById('waterfall').offsetWidth);
+    var ch = c.height = Math.max(document.getElementById('waterfall').scrollHeight, document.getElementById('waterfall').offsetHeight, document.getElementById('waterfall').clientHeight, document.getElementById('waterfall').scrollHeight, document.getElementById('waterfall').offsetHeight);
+    var waterfall = new waterfallCanvas(c, cw, ch);
+    setupRAF();
+    waterfall.init();
+  } /* Second plugin */
+  var w, h, renderer, stage, waveGraphics, partGraphics, waveTexture, partTexture, waveCount, partCount, waves, parts;
+
+  function init() {
+    renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight / 2, {
+      backgroundColor: '0x' + tinycolor('hsl(200, 50%, 10%)').toHex()
+    });
