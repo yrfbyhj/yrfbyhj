@@ -1,0 +1,20 @@
+
+                            if (td.InnerText == "" && SpaceInEmptyCell == true) td.InnerHtml="&nbsp;";
+                        }
+                        if (i == ReaderData.GetLength(0)-1) break;
+                        if (ft == FillType.Automatic || ft == FillType.DynamicRows)
+                        {
+                            HtmlTableRow tr = new HtmlTableRow();
+                            tb.Rows.Add(tr);
+                            for (int k = 0; k < tb.Rows[copyRowID].Cells.Count; k++)
+                            {
+                                HtmlTableCell prv_tc = tb.Rows[startRowID].Cells[k];
+                                HtmlTableCell tc = new HtmlTableCell();
+                                tr.Cells.Add(tc);
+                                CloneStyles(prv_tc, tc);
+                            }
+                        }
+                        startRowID ++;
+                    }
+                }
+}//fill table
