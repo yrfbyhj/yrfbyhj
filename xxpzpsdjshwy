@@ -1,0 +1,18 @@
+<!-- 服务 -->
+<view class="services-box">
+  <view class="services-left">服务</view>
+  <view class="services-right">新鲜品质 配送到家 售后无忧</view>
+</view>
+
+<!-- 商品评价 -->
+<view class="product-reply" >
+  <view class="reply-title">
+    <view class="leftReolyCount">
+      评价(2824)
+    </view>
+    <view class="middleSeeMore">
+      <view>查看全部评价</view>
+    </view>
+    <image class="grayRight" src="{{imgUrl}}/upload/20220608/rightJt.png" lazy-load="true"></image>
+  </view>
+  <view class="replyUserInfo">
